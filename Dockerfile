@@ -24,8 +24,10 @@ RUN curl -sS https://getcomposer.org/installer | php \
     && mv composer.phar /usr/local/bin/composer \
     && composer self-update
 
-WORKDIR /var/www/html
+WORKDIR /var/www
 
-RUN composer create-project bolt/composer-install:^3.4 --prefer-dist --no-interaction
+RUN rm -rf html
+
+RUN composer create-project bolt/composer-install:^3.4 html --prefer-dist --no-interaction
 
 RUN chown -R www-data:www-data /var/www
