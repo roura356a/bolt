@@ -13,12 +13,12 @@ RUN apt-get update && apt-get install -y \
     nano
 
 RUN docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ \
-    && docker-php-ext-install -j$(nproc) \gd pdo_mysql exif zip \
+    && docker-php-ext-install -j$(nproc) gd pdo_mysql exif zip \
     && apt-get clean && rm -rf /var/lib/apt/lists/*
 
 RUN a2enmod headers && a2enmod rewrite
 
-ADD bolt.conf /etc/apache2/sites-available/000-default.conf
+ADD ./bolt.conf /etc/apache2/sites-available/000-default.conf
 
 RUN curl -sS https://getcomposer.org/installer | php \
     && mv composer.phar /usr/local/bin/composer \
@@ -26,8 +26,6 @@ RUN curl -sS https://getcomposer.org/installer | php \
 
 WORKDIR /var/www
 
-RUN rm -rf html
-
-RUN composer create-project bolt/composer-install:^3.4 html --prefer-dist --no-interaction
+RUN rm -rf html && composer create-project bolt/composer-install:^3.4 html --prefer-dist --no-interaction
 
 RUN chown -R www-data:www-data /var/www
