@@ -1,8 +1,7 @@
 version: '3.4'
 services:
   web:
-    build:
-      context: .
+    image: roura/bolt
     domainname: docker
     container_name: bolt
     hostname: bolt
