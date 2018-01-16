@@ -6,6 +6,7 @@ services:
     container_name: bolt
     hostname: bolt
     network_mode: bridge
+    restart: on-failure
     ports:
       - target: 80
         published: 80
