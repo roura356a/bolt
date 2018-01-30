@@ -2,6 +2,8 @@ FROM php:7.2-apache
 
 ENV TERM xterm-256color
 
+ARG BOLT_HOME=/var/www/html
+
 RUN apt-get update && apt-get install -y \
     libpq-dev \
     libpng-dev \
@@ -32,6 +34,6 @@ WORKDIR /var/www
 
 RUN rm -rf html && composer create-project bolt/composer-install:^3.4 html --prefer-dist --no-interaction
 
-WORKDIR /var/www/html
+WORKDIR ${BOLT_HOME}
 
-RUN chown -R www-data:www-data /var/www
+RUN chown -R www-data:www-data ${BOLT_HOME}
