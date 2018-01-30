@@ -18,7 +18,7 @@ RUN docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-di
 
 RUN a2enmod headers && a2enmod rewrite
 
-ADD ./bolt.conf /etc/apache2/sites-available/000-default.conf
+COPY ./bolt.conf /etc/apache2/sites-available/000-default.conf
 
 RUN curl -sS https://getcomposer.org/installer | php \
     && mv composer.phar /usr/local/bin/composer \
