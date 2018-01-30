@@ -2,7 +2,6 @@ FROM php:7.2-apache
 
 ENV TERM xterm-256color
 
-ARG BOLT_HOME=/var/www/html
 ARG NODE_VERSION=8.9.4
 ARG BOLT_VERSION=3.4
 
@@ -40,6 +39,6 @@ WORKDIR /var/www
 
 RUN rm -rf html && composer create-project bolt/composer-install:^${BOLT_VERSION} html --prefer-dist --no-interaction
 
-WORKDIR ${BOLT_HOME}
+WORKDIR /var/www/html
 
-RUN chown -R www-data:www-data ${BOLT_HOME}
+RUN chown -R www-data:www-data /var/www/html
