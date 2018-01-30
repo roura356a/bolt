@@ -32,4 +32,6 @@ WORKDIR /var/www
 
 RUN rm -rf html && composer create-project bolt/composer-install:^3.4 html --prefer-dist --no-interaction
 
+WORKDIR /var/www/html
+
 RUN chown -R www-data:www-data /var/www
