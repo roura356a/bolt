@@ -2,13 +2,8 @@ version: '3.4'
 services:
   web:
     image: roura/bolt
-    domainname: docker
     container_name: bolt
-    hostname: bolt
     network_mode: bridge
     restart: on-failure
     ports:
-      - target: 80
-        published: 80
-        protocol: tcp
-        mode: host
+      - "127.0.0.1:80:80"
