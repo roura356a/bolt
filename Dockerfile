@@ -3,6 +3,8 @@ FROM php:7.2-apache
 ENV TERM xterm-256color
 
 ARG BOLT_HOME=/var/www/html
+ARG NODE_VERSION=8.9.4
+ARG BOLT_VERSION=3.4
 
 RUN apt-get update && apt-get install -y \
     libpq-dev \
@@ -30,9 +32,13 @@ RUN curl -sS https://getcomposer.org/installer | php \
     && mv composer.phar /usr/local/bin/composer \
     && composer self-update
 
+RUN wget https://nodejs.org/download/release/v${NODE_VERSION}/node-v${NODE_VERSION}-linux-x64.tar.gz -O /opt/node.tar.gz \
+    && cd /opt && tar -zxvf node.tar.gz && rm node.tar.gz && mv node-v${NODE_VERSION}-linux-x64 node \
+    && ln -s /opt/node/bin/node /usr/local/bin/node && ln -s /opt/node/bin/npm /usr/local/bin/npm
+
 WORKDIR /var/www
 
-RUN rm -rf html && composer create-project bolt/composer-install:^3.4 html --prefer-dist --no-interaction
+RUN rm -rf html && composer create-project bolt/composer-install:^${BOLT_VERSION} html --prefer-dist --no-interaction
 
 WORKDIR ${BOLT_HOME}
 
