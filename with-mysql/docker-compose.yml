@@ -1,8 +1,7 @@
 version: '3.5'
 services:
   web:
-    build:
-      context: .
+    image: roura/bolt:mysql
     container_name: bolt
     network_mode: bridge
     restart: on-failure
