@@ -37,9 +37,9 @@ RUN wget https://nodejs.org/download/release/v${NODE_VERSION}/node-v${NODE_VERSI
     && ln -s /opt/node/bin/node /usr/local/bin/node && ln -s /opt/node/bin/npm /usr/local/bin/npm
 
 WORKDIR /var/www
-
 RUN rm -rf html && composer create-project bolt/composer-install:^${BOLT_VERSION} html --prefer-dist --no-interaction
-
-WORKDIR /var/www/html
+COPY config.yml /var/www/html/app/config/
 
 RUN chown -R www-data:www-data /var/www/html
+
+WORKDIR /var/www/html

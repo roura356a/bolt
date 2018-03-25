@@ -1,0 +1,15 @@
+version: '3.5'
+services:
+  web:
+    image: roura/bolt:mysql
+    container_name: bolt
+    network_mode: bridge
+    restart: on-failure
+    ports:
+      - "80:80"
+    environment:
+      - MYSQL_HOST=db
+      - MYSQL_USER=bolt_user
+      - MYSQL_PASSWORD=db_1234bolt
+      - MYSQL_ROOT_PASSWORD=db_1234bolt
+      - MYSQL_DATABASE=bolt_site
