@@ -3,7 +3,7 @@ FROM php:7.2-apache
 ENV TERM xterm-256color
 
 ARG NODE_VERSION=8.9.4
-ARG BOLT_VERSION=3.4
+ARG BOLT_VERSION=3.5
 
 RUN apt-get update && apt-get install -y \
     libpq-dev \
