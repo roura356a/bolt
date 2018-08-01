@@ -1,9 +1,9 @@
 database:
     driver: mysql
-    username: env(MYSQL_USER)
-    password: env(MYSQL_PASSWORD)
-    databasename: env(MYSQL_DATABASE)
-    host: env(MYSQL_HOST)
+    username: %MYSQL_USER%
+    password: %MYSQL_PASSWORD%
+    databasename: %MYSQL_DATABASE%
+    host: %MYSQL_HOST%
     port: 3306
 
 sitename: A sample site
