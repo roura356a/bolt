@@ -32,9 +32,9 @@ RUN curl -sS https://getcomposer.org/installer | php \
     && composer self-update \
     && composer global require hirak/prestissimo
 
-RUN wget https://nodejs.org/download/release/v${NODE_VERSION}/node-v${NODE_VERSION}-linux-x64.tar.gz -O /opt/node.tar.gz \
-    && cd /opt && tar -zxvf node.tar.gz && rm node.tar.gz && mv node-v${NODE_VERSION}-linux-x64 node \
-    && ln -s /opt/node/bin/node /usr/local/bin/node && ln -s /opt/node/bin/npm /usr/local/bin/npm
+# Install current Node.js LTS (v8.x)
+RUN curl -sL https://deb.nodesource.com/setup_8.x | bash - \
+    && apt-get install -y nodejs
 
 WORKDIR /var/www
 
